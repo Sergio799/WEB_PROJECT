@@ -1,0 +1,58 @@
+<%- include('../partials/header.ejs')%>
+<h1 class="profilemain">My Events</h1>
+    <div class="profile1">
+        <%if(events.length){%>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th class="eventActionCol">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%events.forEach(event => {%>
+                        <tr>
+                            <td class="title"><a href="/events/<%= event.id%>"><%= event.title%></a></td>
+                            <%if(user.id == event.host){%>
+                                <td><form class="eventActionCol">
+                                        <button type="submit" class="editButton" formmethod="GET" formaction="/events/<%= event._id%>/edit"><i class="fa fa-edit"></i></button>
+                                        <button type="submit" class="deleteButton" formmethod="POST" formaction="/events/<%= event._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                                    </form></td>
+                            <%}%></tr>
+                    <%})%>
+                </tbody>
+            </table>
+        <%}else{%>
+            <p>You have not created any Events</p>
+        <%}%>
+    </div>
+    <h1 class="profilemain">My RSVPs</h1>
+    <div class="profile2">
+        <%if(rsvps.length){%>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th class="eventActionCol">Going?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%rsvps.forEach(rsvp => {%>
+                        <tr>
+                            <td class="title"><a href="/events/<%= rsvp.event.id%>"><%= rsvp.event.title%></a></td>
+                            <%if(user.id == rsvp.user.id){%>
+                                <td class="status">
+                                    <%= rsvp.status%>
+                                </td>
+                            <%}%>
+                        </tr><%})%></tbody>
+            </table>
+        <%}else{%>
+            <p>There are no RSVPs yet.</p>
+        <%}%>
+        <br>
+        <br>
+        <br><br>
+        <br>
+    </div>
+<%- include('../partials/footer.ejs')%>

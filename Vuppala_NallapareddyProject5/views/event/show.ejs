@@ -1,0 +1,68 @@
+<%- include('../partials/header.ejs') %>
+
+<main class="first-page">
+    <div class="eventHeader">
+        <h1 class="eventTitle"><%= event.title %></h1>
+    </div>
+        <div class="rsvpButtons">
+            <p>Going?</p>
+            <button class="rsvpButton yes" onclick="sendRsvpData('Yes', '<%= event.id%>')">Yes</button>
+            <button class="rsvpButton no" onclick="sendRsvpData('No', '<%= event.id%>')">No</button>
+            <button class="rsvpButton maybe" onclick="sendRsvpData('Maybe', '<%= event.id%>')">Maybe</button>
+        </div>
+
+    <div class="eventContent">
+        <div class="images">
+            <br>
+            <img src="data:image/jpeg;base64, <%= image %>" alt="logo">
+        </div>
+        <div class="eventDetails">
+            <ul>
+                <li>
+                    <label>Host: &MediumSpace;</label>
+                    <p><%= event.host%></p>
+                </li>
+                <li>
+                    <label>Date and Time: &MediumSpace;</label>
+                    <p>From <%= event.start_date_time %> To <%= event.end_date_time %></p>
+                </li>
+                <li>
+                    <label>Location: &MediumSpace;</label>
+                    <p><%= event.location %></p>
+                </li>
+                <li>
+                    <label>Details: &MediumSpace;</label>
+                    <p><%= event.details %></p>
+                </li>
+                <li> <label>Number of rsvps: &MediumSpace;</label>
+                    <p><%= rsvps%></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br><br>
+    <br><br>
+    <script>
+        function sendRsvpData(rsvp, eventId) {
+            let data = {
+                'status': rsvp
+            }
+            fetch("/events/" + eventId + "/rsvp", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    window.location.href="/users/profile";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+    </script>
+</main>   
+
+<%- include('../partials/footer.ejs') %>

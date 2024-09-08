@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs')%>
+    <main class="Events_page">
+        <%if(events.length){ %>
+            <%categories.forEach(category => {%>
+                <% let categoryEvents = events.filter(event => event.category === category); %>
+                <% if (categoryEvents.length > 0) { %>
+                    <section class="category">
+                        <h1><%= category%></h1>
+                        <ul class="items">
+                            <%events.forEach(event => {%>
+                                <%if(event.category == category){%>
+                                    <li>
+                                        <a href="/events/<%= event.id%>"><p><%= event.title%></p></a>
+                                    </li>
+                                <%}%>
+                            <%});%>
+                        </ul>
+                    </section>
+                <%}%>
+            <%})%>
+        <%}%>
+    </main>
+<%- include('../partials/footer.ejs')%>

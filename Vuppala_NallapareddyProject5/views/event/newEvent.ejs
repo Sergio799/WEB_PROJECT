@@ -1,0 +1,94 @@
+<%- include('../partials/header.ejs')%>
+
+<body class="forfull_page">
+    <div class="connection-main">
+        <h1>Create a New Event Request</h1>
+        <form class="container" action="/events" method="POST" enctype="multipart/form-data">
+         <div class=" forbottom">      
+        <label for="category">Choose a Category:</label>
+        <select id="dropdown" name="category">
+            <option value="Workshops">Workshops</option>
+            <option value="Editing softwares">Editing softwares</option>
+            <option value="Techniques">Techniques</option>
+            <option value="Equipment used">Equipment used</option>
+            <option value="Lighting Technique">Lighting Technique</option>
+            <option value="Artistic genre">Artistic genre</option>
+            <option value="Culture and travel">Culture and travel</option>
+
+        </select>
+    </div>
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label class="form-label" for="title">Event Name </label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="title" id="inputTitle">
+                    </div>
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label class="form-label" for="location">Location</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="location" id="inputHost">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label class="form-label" for="details">Event Details</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="details" id="inputDetails">
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label class="form-label" for="start_date_time">Event Date</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="datetime-local" class="form-control" name="start_date_time" id="inputWhen">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label class="form-label" for="end_date_time">Event End Date</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="datetime-local" class="form-control" name="end_date_time" id="inputWhen">
+                    </div>
+                </div>
+            </div>
+            
+
+            
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label class="form-label" for="img">Your Image</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="file" class="form-control" name="img" id="inputImage">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary " id="create-connection-btn">Create Connection</button>
+          </form>
+    </div>
+</body>
+    <%- include('../partials/footer.ejs')%>
